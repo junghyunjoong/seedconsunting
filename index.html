@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시드경영컨설팅 - 기업 경영 컨설팅 파트너</title>
+    <style>
+        /* 기본 스타일 및 변수 설정 */
+        :root {
+            --primary-color: #1a2b49; /* 신뢰감 있는 딥 네이비 */
+            --secondary-color: #b89a5f; /* 고급스러운 골드 */
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; }
+        body { line-height: 1.6; color: var(--text-color); }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        /* 레이아웃 */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* 헤더 */
+        header { background: #fff; border-bottom: 1px solid #eee; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-size: 26px; font-weight: 800; color: var(--primary-color); letter-spacing: -0.5px; }
+        .logo span { color: var(--secondary-color); }
+        nav ul { display: flex; gap: 40px; }
+        nav a { font-weight: 600; font-size: 17px; color: #444; transition: 0.3s; }
+        nav a:hover { color: var(--primary-color); }
+        .consult-btn { background: var(--primary-color); color: #fff; padding: 12px 25px; border-radius: 4px; font-weight: bold; transition: 0.3s; }
+        .consult-btn:hover { background: #132036; }
+
+        /* 메인 히어로 섹션 */
+        .hero { 
+            background: linear-gradient(rgba(26, 43, 73, 0.8), rgba(26, 43, 73, 0.7)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; background-position: center;
+            height: 650px; display: flex; align-items: center; text-align: center; color: #fff; margin-top: 80px;
+        }
+        .hero-content { width: 100%; }
+        .hero h1 { font-size: 52px; margin-bottom: 20px; font-weight: 700; leading-trim: both; }
+        .hero p { font-size: 20px; margin-bottom: 50px; opacity: 0.9; font-weight: 300; }
+        .hero-cta { display: inline-block; border: 2px solid var(--secondary-color); color: var(--secondary-color); padding: 15px 40px; font-size: 18px; font-weight: bold; transition: 0.3s; }
+        .hero-cta:hover { background: var(--secondary-color); color: #fff; }
+
+        /* 섹션 공통 */
+        section { padding: 100px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 38px; color: var(--primary-color); margin-bottom: 15px; font-weight: 700; }
+        .section-header p { font-size: 18px; color: #666; }
+
+        /* 서비스 영역 */
+        .services { background: var(--light-bg); }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-item { background: #fff; padding: 40px 30px; border: 1px solid #eee; transition: 0.3s; }
+        .service-item:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--secondary-color); }
+        .icon-box { width: 60px; height: 60px; background: var(--light-bg); display: flex; justify-content: center; align-items: center; margin-bottom: 25px; border-radius: 50%; color: var(--primary-color); font-size: 24px; font-weight: bold; }
+        .service-item h3 { font-size: 22px; margin-bottom: 15px; color: #222; }
+        .service-item p { color: #666; font-size: 15px; margin-bottom: 20px; line-height: 1.6; }
+        .service-link { color: var(--secondary-color); font-weight: bold; font-size: 14px; }
+
+        /* 통계/성과 영역 */
+        .stats { background: var(--primary-color); color: #fff; text-align: center; padding: 80px 0; }
+        .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .stat-item h3 { font-size: 48px; color: var(--secondary-color); margin-bottom: 10px; font-weight: 700; }
+        .stat-item p { font-size: 18px; opacity: 0.8; }
+
+        /* 문의하기 폼 */
+        .contact { background: #fff; }
+        .contact-box { max-width: 800px; margin: 0 auto; background: #fff; padding: 0 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .form-control { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
+        .submit-btn { width: 100%; background: var(--primary-color); color: #fff; padding: 18px; border: none; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+
+        /* 푸터 */
+        footer { background: #222; color: #888; padding: 60px 0; font-size: 14px; border-top: 5px solid var(--secondary-color); }
+        .footer-info p { margin-bottom: 10px; }
+        .footer-info strong { color: #fff; margin-right: 10px; }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .header-inner { flex-direction: column; height: auto; padding: 20px 0; }
+            nav ul { margin-top: 20px; gap: 20px; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">SEED <span>Business Consulting</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#about">회사소개</a></li>
+                    <li><a href="#services">주요업무</a></li>
+                    <li><a href="#cases">성공사례</a></li>
+                    <li><a href="#contact">상담신청</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="consult-btn">무료진단 신청</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>기업 성장의 해답,<br>시드경영컨설팅이 제시합니다.</h1>
+            <p>정책자금 조달부터 기업인증, 세무 전략까지<br>대표님의 고민을 해결하는 최적의 경영 파트너가 되겠습니다.</p>
+            <a href="#contact" class="hero-cta">서비스 문의하기</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>기업의 단계별 성장에 필요한 Total Solution을 제공합니다.</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="icon-box">₩</div>
+                    <h3>정책자금 컨설팅</h3>
+                    <p>중소벤처기업부 및 각종 정부 기관의 정책자금을 분석하여 기업 상황에 맞는 최저 금리 자금을 매칭해 드립니다.</p>
+                    <a href="#" class="service-link">자세히 보기 →</a>
+                </div>
+                <div class="service-item">
+                    <div class="icon-box">★</div>
+                    <h3>기업인증 / 연구소</h3>
+                    <p>벤처기업, 이노비즈, 메인비즈 및 ISO 인증과 기업부설연구소 설립을 통해 기업의 대외 신뢰도를 높입니다.</p>
+                    <a href="#" class="service-link">자세히 보기 →</a>
+                </div>
+                <div class="service-item">
+                    <div class="icon-box">R&D</div>
+                    <h3>정부지원사업 (R&D)</h3>
+                    <p>기술력을 보유한 기업을 위해 정부 무상환 출연금 및 각종 바우처 지원 사업 선정을 전략적으로 지원합니다.</p>
+                    <a href="#" class="service-link">자세히 보기 →</a>
+                </div>
+                <div class="service-item">
+                    <div class="icon-box">📊</div>
+                    <h3>재무/세무 리스크</h3>
+                    <p>가지급금, 이익잉여금 정리 및 법인세 절세, 가업승계 등 기업 운영 시 발생하는 리스크를 관리합니다.</p>
+                    <a href="#" class="service-link">자세히 보기 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>누적 컨설팅 기업</p>
+                </div>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>자금/인증 승인율</p>
+                </div>
+                <div class="stat-item">
+                    <h3>200억+</h3>
+                    <p>누적 자금 조달액</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>고객 만족도</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>간단한 정보를 남겨주시면 전문 컨설턴트가 빠르게 연락드립니다.</p>
+            </div>
+            <div class="contact-box">
+                <form>
+                    <div class="form-group">
+                        <label>기업명 / 담당자 성함</label>
+                        <input type="text" class="form-control" placeholder="예) (주)시드전자 / 홍길동">
+                    </div>
+                    <div class="form-group">
+                        <label>연락처</label>
+                        <input type="tel" class="form-control" placeholder="010-0000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label>관심 분야 (중복 선택 가능)</label>
+                        <select class="form-control">
+                            <option>디지털전환 (네이버,카카오)</option>
+                            <option>정책자금 (운전/시설)</option>
+                            <option>기업인증 (벤처/이노비즈 등)</option>
+                            <option>R&D 정부지원사업</option>
+                            <option>법인 전환/세무 관리</option>
+                            <option>기타 경영 자문</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>문의 내용</label>
+                        <textarea class="form-control" rows="5" placeholder="현재 기업의 상황이나 궁금하신 점을 적어주세요."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">무료 상담 신청하기</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-info">
+            <div class="logo" style="margin-bottom: 20px; color:#fff;">SEED Consulting</div>
+            <p><strong>상호명:</strong> 시드경영컨설팅 | <strong>대표:</strong> 정현중 경영지도사</p>
+            <p><strong>사업자등록번호:</strong> 415-35-00825 | <strong>주소:</strong> 서울특별시 관악구 남부순환로 1952
+            <p><strong>Email:</strong> cloudssea@hanmail.net | <strong>Tel:</strong> 070-8224-5200</p>
+            <p style="margin-top: 20px; font-size: 12px; color: #666;">Copyright © 2025 SEED Consulting. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
